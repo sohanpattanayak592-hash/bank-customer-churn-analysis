@@ -1,14 +1,17 @@
 Bank Customer Churn Analysis: Predicting Customer Exit
+
 This repository contains a portfolio data analytics project aimed at understanding why customers leave their bank. I used the standard Kaggle Bank Customer Churn dataset to uncover patterns in customer attrition and translated those findings into an interactive business intelligence dashboard.
 
 The Business Problem
+
 Customer retention is a core metric for any financial institution. Since acquiring a new customer is significantly more expensive than retaining an existing one, identifying the behavioral or demographic patterns that precede a closed account (churn) is highly valuable. This project explores historical banking data to pinpoint those exact patterns.
 
 Phase 1: Data Cleaning & Python EDA
+
 Data Preparation: I loaded the Churn_Modelling.csv dataset into Pandas, checked for missing values, and removed non-predictive columns like RowNumber, CustomerId, and Surname.   
 PY
 
-Exploratory Data Analysis (EDA): I used Matplotlib and Seaborn to visualize customer churn counts, age distributions, and average balances. To align the visuals with a specific corporate profile, I customized the charts using ICICI Bank's brand palette (Maroon #800000 and Orange #F37021).   
+Exploratory Data Analysis (EDA): I used Matplotlib and Seaborn to visualize customer churn counts, age distributions, and average balances. To align the visuals with a specific corporate profile, I customized the charts using (Maroon #800000 and Orange #F37021).   
 PY
 + 1
 
