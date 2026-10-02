@@ -1,21 +1,60 @@
-# Bank Customer Churn Analysis
+Bank Customer Churn Analysis: Predicting Customer Exit
+This repository contains a portfolio data analytics project aimed at understanding why customers leave their bank. I used the standard Kaggle Bank Customer Churn dataset to uncover patterns in customer attrition and translated those findings into an interactive business intelligence dashboard.
 
-This is a data analytics project for my portfolio. I used the standard Kaggle Bank Customer Churn dataset to try and understand why customers are leaving the bank.
+The Business Problem
+Customer retention is a core metric for any financial institution. Since acquiring a new customer is significantly more expensive than retaining an existing one, identifying the behavioral or demographic patterns that precede a closed account (churn) is highly valuable. This project explores historical banking data to pinpoint those exact patterns.
 
-### The Business Problem
-Banks want to retain their customers. It costs more to acquire a new customer than to keep an existing one. By looking at historical data, we can try to find patterns that indicate a customer might close their account (churn).
+Phase 1: Data Cleaning & Python EDA
+Data Preparation: I loaded the Churn_Modelling.csv dataset into Pandas, checked for missing values, and removed non-predictive columns like RowNumber, CustomerId, and Surname.   
+PY
 
-### Steps Taken
-* Downloaded the data and loaded it into pandas.
-* Checked for missing values and dropped columns that aren't useful for prediction (like names and IDs).
-* Created a few visualizations using matplotlib and seaborn to explore the data. I used maroon and orange colors for the charts.
-* Loaded the data into a local SQLite database to practice writing SQL queries.
-* Queried the data to find insights.
+Exploratory Data Analysis (EDA): I used Matplotlib and Seaborn to visualize customer churn counts, age distributions, and average balances. To align the visuals with a specific corporate profile, I customized the charts using ICICI Bank's brand palette (Maroon #800000 and Orange #F37021).   
+PY
++ 1
 
-### Basic Insights
-* Older customers seem to churn more often than younger customers.
-* Customers in Germany had a noticeably higher churn rate compared to France and Spain.
-* There doesn't seem to be a huge difference in the average balance between male and female customers.
+SQL Integration: I loaded the cleaned Pandas DataFrame into a local SQLite database (bank_churn.db) using the sqlite3 library. This allowed me to write standard SQL queries (utilizing GROUP BY and CASE WHEN statements) to extract targeted insights on churn by country, average financials by gender, and churn by age group.   
+PY
++ 1
 
-### How to Run
-Just make sure you have `Churn_Modelling.csv` in the same folder and run the python script. It will print the SQL results to the terminal and show the charts.
+Phase 2: Power BI Dashboard
+To make these insights accessible to non-technical stakeholders, I built an interactive dashboard. You can view the final file in this repository under the name Bank_churn_analysis.pbix.
+
+Data Modeling: I imported the cleaned data and ensured the Exited, HasCrCard, and IsActiveMember columns were treated as text rather than numerical values to prevent unwanted mathematical aggregations.   
+MD
+
+DAX Measures: I wrote custom DAX formulas to generate top-level metrics, including Total Customers (using COUNTROWS), Total Churned (using a CALCULATE function filtered to "CHURNED"), and a percentage Churn Rate (using the DIVIDE function).   
+MD
+
+Visualizations:
+
+KPI Cards: Displaying Total Customers, Total Churned, and the overall Churn Rate at a glance.   
+MD
+
+Donut Chart: Showing the binary proportion of retained versus churned customers.   
+MD
+
+Clustered Bar Chart: Breaking down total churn by customer age.   
+MD
+
+Map Visual: Highlighting churn hotspots by geography.   
+MD
+
+Interactivity: I added dropdown slicers for Geography and IsActiveMember so users can filter the entire dashboard dynamically to investigate specific segments.   
+MD
+
+Formatting: The dashboard features a clean white background and is styled exclusively with ICICI Bank's exact hex codes (Maroon #8A1538 and Orange #F15A22) for a professional finish.   
+MD
+
+Key Insights Discovered
+Age Factor: Older customers demonstrate a noticeably higher churn rate compared to younger demographics.
+
+Regional Variance: Customers located in Germany churn at a significantly higher rate than those in France and Spain.
+
+Gender & Balance: There is no substantial difference in the average account balance between male and female customers.
+
+How to Run the Project
+Ensure Churn_Modelling.csv and bank_churn_analysis.py are in the same directory.
+
+Run the Python script to generate the EDA charts and execute the SQLite queries (results will print directly to your terminal).
+
+Open Bank_churn_analysis.pbix in Power BI Desktop to interact with the final dashboard.
